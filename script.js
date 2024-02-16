@@ -48,9 +48,9 @@ function preload() {
 function create() {
   this.add.image(450, 300, "sky").setScale(1.9); // Adição da imagem do céu
 
-  passarinho = this.add.sprite(100, 300, "green").setScale(1.3); // Criação do sprite do passarinho verde
-  passarinho_2 = this.add.sprite(600, 100, "red").setScale(0.8); // Criação do sprite do passarinho vermelho
   passarinho_3 = this.add.sprite(300, 400, "purple").setScale(1.6).setFlip(true); // Criação do sprite do passarinho roxo
+  passarinho_2 = this.add.sprite(600, 200, "red").setScale(0.8); // Criação do sprite do passarinho vermelho
+  passarinho = this.add.sprite(100, 300, "green").setScale(1.3); // Criação do sprite do passarinho verde
   
 
   // Criação da animação de voo do passarinho verde
