@@ -48,10 +48,12 @@ function preload() {
 function create() {
   this.add.image(450, 300, "sky").setScale(1.9); // Adição da imagem do céu
 
-  passarinho_3 = this.add.sprite(300, 400, "purple").setScale(1.6).setFlip(true); // Criação do sprite do passarinho roxo
+  passarinho_3 = this.add
+    .sprite(300, 400, "purple")
+    .setScale(1.6)
+    .setFlip(true); // Criação do sprite do passarinho roxo
   passarinho_2 = this.add.sprite(600, 200, "red").setScale(0.8); // Criação do sprite do passarinho vermelho
   passarinho = this.add.sprite(100, 300, "green").setScale(1.3); // Criação do sprite do passarinho verde
-  
 
   // Criação da animação de voo do passarinho verde
   this.anims.create({
@@ -73,16 +75,16 @@ function create() {
 
   passarinho_2.anims.play("fly_2", true); // Início da reprodução da animação de voo do passarinho vermelho
 
-    // Criação da animação de voo do passarinho roxo
-    this.anims.create({
-      key: "fly_3", // Nome da animação
-      frames: this.anims.generateFrameNumbers("purple", { start: 0, end: 7 }), // Quadros da animação
-      frameRate: 10, // Taxa de quadros
-      repeat: -1, // Repetição infinita
-    });
-  
-    passarinho_3.anims.play("fly_3", true); // Início da reprodução da animação de voo do passarinho roxo
-  }
+  // Criação da animação de voo do passarinho roxo
+  this.anims.create({
+    key: "fly_3", // Nome da animação
+    frames: this.anims.generateFrameNumbers("purple", { start: 0, end: 7 }), // Quadros da animação
+    frameRate: 10, // Taxa de quadros
+    repeat: -1, // Repetição infinita
+  });
+
+  passarinho_3.anims.play("fly_3", true); // Início da reprodução da animação de voo do passarinho roxo
+}
 
 // Função de atualização do jogo
 function update() {
@@ -96,6 +98,9 @@ function update() {
 
   // Verifica se a posição x do passarinho é menor que 700 e se a variável "ida" é true
   if (passarinho.x < 700 && passarinho.ida === true) {
+    console.log(
+      "O passarinho está indo para a direita até a posição 700, onde irá mudar de direção."
+    );
     passarinho.x += 5; // Aumenta a posição x do passarinho em 5 unidades
   }
 
@@ -105,13 +110,20 @@ function update() {
   }
 
   if (passarinho.x > 100 && passarinho.ida === false) {
+    console.log(
+      "O passarinho está voltando para a esquerda até a posição 100, onde muda de direção."
+    );
     passarinho.x -= 5; // Diminui a posição x do passarinho em 5 unidades
   }
 
   for (let i = 0; i < 200; i++) {
     passarinho.y += verticalDirection * verticalSpeed;
-    // Se o passarinho atingir os limites superior ou inferior da tela, inverte a direção vertical
+
     if (passarinho.y <= 100 || passarinho.y >= 400) {
+      // Se o passarinho atingir os limites superior ou inferior da tela, inverte a direção vertical
+      console.log(
+        "O passarinho atinge o limite superior ou inferior da tela e muda sua direção."
+      );
       verticalDirection *= -1;
     }
   }
