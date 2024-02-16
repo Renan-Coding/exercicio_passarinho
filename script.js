@@ -18,6 +18,8 @@ var passarinho; // Declaração da variável passarinho
 var vertical; // Declaração da variável vertical
 var verticalDirection = -1;
 var verticalSpeed = 3;
+var passarinho_2;
+var passarinho_3;
 
 // Função de pré-carregamento de recursos
 function preload() {
@@ -28,7 +30,18 @@ function preload() {
     frameWidth: 75, //Largura
     frameHeight: 75, //Altura
   });
-  
+
+  // Carregamento do spritesheet do passarinho vermelho
+  this.load.spritesheet("red", "assets/bird-red.png", {
+    frameWidth: 75, //Largura
+    frameHeight: 75, //Altura
+  });
+
+  // Carregamento do spritesheet do passarinho roxo
+  this.load.spritesheet("purple", "assets/bird-purple.png", {
+    frameWidth: 75, //Largura
+    frameHeight: 75, //Altura
+  });
 }
 
 // Função de criação dos elementos do jogo
@@ -36,6 +49,9 @@ function create() {
   this.add.image(450, 300, "sky").setScale(1.9); // Adição da imagem do céu
 
   passarinho = this.add.sprite(100, 300, "green").setScale(1.3); // Criação do sprite do passarinho verde
+  passarinho_2 = this.add.sprite(600, 100, "red").setScale(0.8); // Criação do sprite do passarinho vermelho
+  passarinho_3 = this.add.sprite(300, 400, "purple").setScale(1.6).setFlip(true); // Criação do sprite do passarinho roxo
+  
 
   // Criação da animação de voo do passarinho verde
   this.anims.create({
@@ -46,7 +62,27 @@ function create() {
   });
 
   passarinho.anims.play("fly", true); // Início da reprodução da animação de voo do passarinho verde
-}
+
+  // Criação da animação de voo do passarinho vermelho
+  this.anims.create({
+    key: "fly_2", // Nome da animação
+    frames: this.anims.generateFrameNumbers("red", { start: 0, end: 7 }), // Quadros da animação
+    frameRate: 10, // Taxa de quadros
+    repeat: -1, // Repetição infinita
+  });
+
+  passarinho_2.anims.play("fly_2", true); // Início da reprodução da animação de voo do passarinho vermelho
+
+    // Criação da animação de voo do passarinho roxo
+    this.anims.create({
+      key: "fly_3", // Nome da animação
+      frames: this.anims.generateFrameNumbers("purple", { start: 0, end: 7 }), // Quadros da animação
+      frameRate: 10, // Taxa de quadros
+      repeat: -1, // Repetição infinita
+    });
+  
+    passarinho_3.anims.play("fly_3", true); // Início da reprodução da animação de voo do passarinho roxo
+  }
 
 // Função de atualização do jogo
 function update() {
